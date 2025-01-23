@@ -38,6 +38,18 @@ export default function RootLayout({
             <div className="container mx-auto flex-1">{children}</div>
           </main>
         </Providers>
+        {/* Dynamically load PushAlert script */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `(function(d, t) {
+              var g = d.createElement(t),
+                  s = d.getElementsByTagName(t)[0];
+              g.src = "https://cdn.pushalert.co/integrate_5ff239592a0f2ea64e7845730612bca3.js";
+              s.parentNode.insertBefore(g, s);
+            }(document, "script")));`,
+          }}
+        ></script>
       </body>
     </html>
   );

@@ -3,3 +3,6 @@
 /out/
 
 .vercel
+
+# Local Netlify folder
+.netlify
