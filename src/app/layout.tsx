@@ -29,16 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
-        <Providers>
-          <main
-            className={`flex flex-col h-svh text-foreground bg-background ${inter.variable} font-sans`}
-          >
-            <AppNavBar />
-            <div className="container mx-auto flex-1">{children}</div>
-          </main>
-        </Providers>
-        {/* Dynamically load PushAlert script */}
+      <head>
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
@@ -50,6 +41,17 @@ export default function RootLayout({
             }(document, "script")));`,
           }}
         ></script>
+      </head>
+      <body className={inter.className}>
+        <Providers>
+          <main
+            className={`flex flex-col h-svh text-foreground bg-background ${inter.variable} font-sans`}
+          >
+            <AppNavBar />
+            <div className="container mx-auto flex-1">{children}</div>
+          </main>
+        </Providers>
+        {/* Dynamically load PushAlert script */}
       </body>
     </html>
   );
