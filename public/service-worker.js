@@ -1,26 +1,6 @@
+importScripts("https://cdn.pushalert.co/sw-78684.js");
+
 self.skipWaiting();
-
-self.addEventListener("fetch", function (_event) {
-  console.log("Fetch event triggered");
-  //nothing for now
-});
-
-self.addEventListener("install", (event) => {
-  console.log("Service worker installing...");
-  event.waitUntil(
-    caches.open("your-cache-name").then((cache) => {
-      console.log("Opened cache");
-      return cache
-        .addAll(["/", "/index.html", "/styles.css", "/script.js"])
-        .then(() => {
-          console.log("All resources have been cached");
-        })
-        .catch((error) => {
-          console.error("Failed to cache resources", error);
-        });
-    })
-  );
-});
 
 self.addEventListener("fetch", (event) => {
   console.log("Fetch event for ", event.request.url);
@@ -38,5 +18,22 @@ self.addEventListener("fetch", (event) => {
       .catch((error) => {
         console.error("Error fetching data", error);
       })
+  );
+});
+
+self.addEventListener("install", (event) => {
+  console.log("Service worker installing...");
+  event.waitUntil(
+    caches.open("your-cache-name").then((cache) => {
+      console.log("Opened cache");
+      return cache
+        .addAll(["/", "/index.html", "/styles.css", "/script.js"])
+        .then(() => {
+          console.log("All resources have been cached");
+        })
+        .catch((error) => {
+          console.error("Failed to cache resources", error);
+        });
+    })
   );
 });
